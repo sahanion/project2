@@ -1,0 +1,202 @@
+body{
+font-family: Arial;
+text-align:center;
+background:#f0f2f5;
+}
+
+h1{
+margin-top:50px;
+}
+
+.quiz-container{
+display:flex;
+flex-direction:column;
+gap:15px;
+width:300px;
+margin:auto;
+margin-top:50px;
+}
+
+button{
+padding:15px;
+font-size:18px;
+border:none;
+background:#2c7be5;
+color:white;
+border-radius:8px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a5fd0;
+}
+
+
+.card{
+background:white;
+padding:20px;
+margin:20px auto;
+width:500px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+}
+
+.option{
+display:block;
+width:100%;
+margin:10px 0;
+padding:12px;
+font-size:16px;
+cursor:pointer;
+border-radius:6px;
+border:1px solid #ccc;
+}
+
+.correct{
+background:#28a745;
+color:white;
+}
+
+.wrong{
+background:#dc3545;
+color:white;
+}
+
+.buttons{
+margin-top:20px;
+}
+
+.correct{
+background:#28a745;
+color:white;
+animation: correctGlow 0.6s ease-in-out;
+box-shadow:0 0 15px #28a745;
+}
+
+.wrong{
+background:#dc3545;
+color:white;
+animation: wrongGlow 0.6s ease-in-out;
+box-shadow:0 0 15px #dc3545;
+}
+
+@keyframes correctGlow{
+
+0%{
+box-shadow:0 0 0px #28a745;
+}
+
+50%{
+box-shadow:0 0 25px #28a745;
+}
+
+100%{
+box-shadow:0 0 15px #28a745;
+}
+
+}
+
+@keyframes wrongGlow{
+
+0%{
+box-shadow:0 0 0px #dc3545;
+}
+
+50%{
+box-shadow:0 0 25px #dc3545;
+}
+
+100%{
+box-shadow:0 0 15px #dc3545;
+}
+
+}
+
+
+.option{
+display:block;
+width:100%;
+margin:10px 0;
+padding:12px;
+font-size:16px;
+cursor:pointer;
+border-radius:6px;
+border:1px solid #ccc;
+transition:all 0.2s ease;
+}
+
+.option:hover{
+transform:scale(1.03);
+background:#f5f5f5;
+}
+
+.card{
+background:white;
+padding:20px;
+margin:20px auto;
+width:500px;
+border-radius:10px;
+box-shadow:0 2px 10px rgba(0,0,0,0.1);
+animation: cardAppear 0.4s ease;
+}
+
+@keyframes cardAppear{
+
+from{
+opacity:0;
+transform:translateY(15px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+#explanationCard{
+
+border-left:5px solid #2c7be5;
+animation: explanationAppear 0.5s ease;
+
+}
+
+@keyframes explanationAppear{
+
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+#progressBox{
+width:500px;
+margin:auto;
+margin-top:20px;
+}
+
+#questionCounter{
+font-weight:bold;
+margin-bottom:8px;
+}
+
+#progressBarContainer{
+width:100%;
+height:10px;
+background:#e0e0e0;
+border-radius:5px;
+overflow:hidden;
+}
+
+#progressBar{
+height:100%;
+width:0%;
+background:#2c7be5;
+transition:width 0.4s ease;
+}

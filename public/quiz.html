@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quiz</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<h1 id="topicTitle"></h1>
+
+<div id="startBox">
+<button onclick="startQuiz()">Click to Start Quiz</button>
+</div>
+
+<div id="quizContainer" style="display:none;">
+
+<!-- Progress Section -->
+
+<div id="progressBox">
+
+<div id="questionCounter"></div>
+
+<div id="progressBarContainer">
+<div id="progressBar"></div>
+</div>
+
+</div>
+
+<!-- Timer -->
+
+<div id="timer">Time: 0s</div>
+
+<!-- Question -->
+
+<div id="questionCard" class="card"></div>
+
+<!-- Options -->
+
+<div id="optionsContainer"></div>
+
+<!-- Explanation -->
+
+<div id="explanationCard" class="card" style="display:none;"></div>
+
+<!-- Control Buttons -->
+
+<div class="buttons">
+
+<button onclick="skipQuestion()">Skip</button>
+
+<button id="nextBtn" onclick="nextQuestion()" style="display:none;">Next</button>
+
+<button onclick="endQuiz()">End</button>
+
+</div>
+
+</div>
+
+<script src="js/quiz.js"></script>
+
+</body>
+</html>
