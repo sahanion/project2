@@ -13,7 +13,7 @@ let timerInterval;
 let timeSpent = 0;
 
 
-const MAX_QUESTIONS = 50;
+const MAX_QUESTIONS = 5;
 const topic = localStorage.getItem("quizTopic");
 
 document.getElementById("topicTitle").innerText = topic;
@@ -25,11 +25,15 @@ document.getElementById("quizContainer").style.display="block";
 
 await loadMoreQuestions();
 
+currentIndex = 0;
+
 showQuestion();
 
 }
 
 async function loadMoreQuestions(){
+
+document.getElementById("loader").style.display="block";
 
 const res = await fetch(`/api/questions?topic=${topic}`);
 
@@ -39,10 +43,18 @@ questions = questions.concat(newQuestions);
 
 totalLoaded += newQuestions.length;
 
+document.getElementById("loader").style.display="none";
+
 }
 
 function showQuestion(){
+
+if(!questions[currentIndex]){
+return;
+}
+
 updateProgress();
+
 const q = questions[currentIndex];
 
 document.getElementById("questionCard").innerText = q.question;
@@ -119,15 +131,15 @@ async function nextQuestion(){
 
 currentIndex++;
 
-if(currentIndex >= questions.length){
-
-if(totalLoaded >= MAX_QUESTIONS){
+// stop quiz when max reached
+if(currentIndex >= MAX_QUESTIONS){
 endQuiz();
 return;
 }
 
+// load more questions if needed
+if(currentIndex >= questions.length){
 await loadMoreQuestions();
-
 }
 
 showQuestion();
@@ -140,20 +152,31 @@ stopTimer();
 
 currentIndex++;
 
-if(currentIndex >= questions.length){
-
-if(totalLoaded >= MAX_QUESTIONS){
+if(currentIndex >= MAX_QUESTIONS){
 endQuiz();
 return;
 }
 
+if(currentIndex >= questions.length){
 await loadMoreQuestions();
-
 }
 
 showQuestion();
 
 }
+
+function previousQuestion(){
+
+if(currentIndex > 0){
+
+currentIndex--;
+
+showQuestion();
+
+}
+
+}
+
 function startTimer(){
 
 timeSpent=0;
@@ -189,14 +212,12 @@ window.location.href="finish.html";
 
 function updateProgress(){
 
-const total = MAX_QUESTIONS;
-
 const current = currentIndex + 1;
 
 document.getElementById("questionCounter").innerText =
-`Question ${current} / ${total}`;
+`Question ${current} / ${MAX_QUESTIONS}`;
 
-const percent = (currentIndex / MAX_QUESTIONS) * 100;
+const percent = (current / MAX_QUESTIONS) * 100;
 
 document.getElementById("progressBar").style.width =
 percent + "%";
