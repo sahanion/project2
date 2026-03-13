@@ -13,7 +13,7 @@ let timerInterval;
 let timeSpent = 0;
 
 
-const MAX_QUESTIONS = 5;
+const MAX_QUESTIONS = 50;
 const topic = localStorage.getItem("quizTopic");
 
 document.getElementById("topicTitle").innerText = topic;
