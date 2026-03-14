@@ -4,6 +4,8 @@ const wrong = localStorage.getItem("wrong") || 0;
 
 const totalTime = localStorage.getItem("totalTime") || 0;
 
+const topic = localStorage.getItem("quizTopic") || "unknown";
+
 document.getElementById("attempted").innerText =
 "Questions Attempted: " + attempted;
 
@@ -26,3 +28,30 @@ function goHome(){
 window.location.href="/";
 
 }
+
+fetch("/api/submitResult", {
+
+method: "POST",
+
+headers: {
+"Content-Type": "application/json"
+},
+
+body: JSON.stringify({
+
+topic: topic,
+
+attempted: attempted,
+
+correct: correct,
+
+wrong: wrong,
+
+time: totalTime
+
+})
+
+})
+.then(res => res.json())
+.then(data => console.log("Analytics saved"))
+.catch(err => console.error("Analytics error", err));
